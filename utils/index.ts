@@ -13,12 +13,26 @@ export async function fetchCars() {
   return result;
 }
 
+// export const calculateCarRent = (city_mpg: number, year: number) => {
+//   const basePriceDay = 50;
+//   const mileageFactor = 0.1;
+//   const ageFactor = 0.05;
+
+//   const mileageRate = city_mpg * mileageFactor;
+//   const ageRate = (new Date().getFullYear() - year) * ageFactor;
+
+//   const rentalRatePerDay = basePriceDay + mileageRate + ageRate;
+
+//   return rentalRatePerDay.toFixed(0);
+// };
 export const calculateCarRent = (city_mpg: number, year: number) => {
+  const city_kpl = city_mpg / 2.35214583; // Dönüşüm faktörü ile çarpma
+
   const basePriceDay = 50;
   const mileageFactor = 0.1;
   const ageFactor = 0.05;
 
-  const mileageRate = city_mpg * mileageFactor;
+  const mileageRate = city_kpl * mileageFactor; // Dönüştürülmüş değer
   const ageRate = (new Date().getFullYear() - year) * ageFactor;
 
   const rentalRatePerDay = basePriceDay + mileageRate + ageRate;
