@@ -4,11 +4,13 @@ import { useState } from "react";
 import Image from "next/image";
 
 import { CarProps } from "@/types";
-import { CustomButton } from ".";
+import { CarDetails, CustomButton } from ".";
 import { calculateCarRent } from "@/utils";
+
 interface CardCarProps {
   car: CarProps;
 }
+
 const CarCard = ({ car }: CardCarProps) => {
   const { city_mpg, year, make, model, transmission, drive } = car;
 
@@ -64,12 +66,17 @@ const CarCard = ({ car }: CardCarProps) => {
           <CustomButton
             title="View More"
             containerStyles="w-full py-[16px] rounded-full bg-primary-blue"
-            textStyles="text-white text-[14px] leading-[17px]"
+            textStyles="text-white text-[14px] leading-[17px] font-bold"
             rightIcon="/right-arrow.svg"
             handleClick={() => setIsOpen(true)}
           />
         </div>
       </div>
+      <CarDetails
+        isOpen={isOpen}
+        closeModal={() => setIsOpen(false)}
+        car={car}
+      />
     </div>
   );
 };
