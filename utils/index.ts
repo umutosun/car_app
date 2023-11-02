@@ -17,18 +17,6 @@ export async function fetchCars(filters: FilterProps) {
   return result;
 }
 
-// export const calculateCarRent = (city_mpg: number, year: number) => {
-//   const basePriceDay = 50;
-//   const mileageFactor = 0.1;
-//   const ageFactor = 0.05;
-
-//   const mileageRate = city_mpg * mileageFactor;
-//   const ageRate = (new Date().getFullYear() - year) * ageFactor;
-
-//   const rentalRatePerDay = basePriceDay + mileageRate + ageRate;
-
-//   return rentalRatePerDay.toFixed(0);
-// };
 export const calculateCarRent = (city_mpg: number, year: number) => {
   const city_kpl = city_mpg / 2.35214583; // Dönüşüm faktörü ile çarpma
 
@@ -49,6 +37,7 @@ export const generateCarImageUrl = (car: CarProps, angle?: string) => {
 
   const { make, year, model } = car;
   url.searchParams.append("customer", "hrjavascript-mastery");
+  url.searchParams.append("make", make);
   url.searchParams.append("modelFamily", model.split(" ")[0]);
   url.searchParams.append("zoomType", "fullscreen");
   url.searchParams.append("modelYear", `${year}`);
